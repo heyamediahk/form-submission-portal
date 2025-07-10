@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Submission Portal</title>
+    <meta name="description" content="Submit your form through our secure and easy-to-use form portal. Fast, reliable, and user-friendly form submission experience.">
+    <meta property="og:title" content="Form Submission Portal">
+    <meta property="og:description" content="Submit your form through our secure and easy-to-use form portal.">
+    <meta property="og:type" content="website">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(-45deg, #FF6B6B, #4ECDC4, #45B7D1, #96CEB4, #FFEAA7, #DDA0DD, #98D8C8);
+            background-size: 400% 400%;
+            animation: gradient-xy 15s ease infinite;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @keyframes gradient-xy {
+            0%, 100% {
+                background-position: left center;
+            }
+            25% {
+                background-position: center top;
+            }
+            50% {
+                background-position: right center;
+            }
+            75% {
+                background-position: center bottom;
+            }
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            padding: 2rem;
+            backdrop-filter: blur(8px);
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .loading-spinner {
+            border: 3px solid #45B7D1;
+            border-top: 3px solid transparent;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        footer {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 1.5rem 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .form-container {
+                padding: 1.5rem;
+            }
+            
+            footer {
+                padding: 1rem;
+            }
+        }
+
+        /* JotForm styling */
+        #jotform-container iframe {
+            width: 100% !important;
+            min-height: 500px !important;
+            border: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <div id="jotform-container"></div>
+            <div id="loading" class="loading">
+                <div class="loading-spinner"></div>
+                <p class="loading-text">Loading form...</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 囍雅傳聲 Heya Media. All rights reserved.</p>
+    </footer>
+
+    <script type="text/javascript" src="https://form.jotform.com/jsform/251894826975073"></script>
+    
+    <script>
+        // Hide loading spinner once form loads
+        setTimeout(function() {
+            const loading = document.getElementById('loading');
+            const jotformFrame = document.querySelector('iframe[src*="jotform"]');
+            
+            if (jotformFrame) {
+                loading.style.display = 'none';
+            } else {
+                // Check again after a delay
+                setTimeout(function() {
+                    const frame = document.querySelector('iframe[src*="jotform"]');
+                    if (frame) {
+                        loading.style.display = 'none';
+                    }
+                }, 2000);
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
